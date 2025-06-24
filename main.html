@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comprehensive guide to mastering APIs with Python using Kaizen and KISS principles">
+  <title>Mastering APIs with Python - Kaizen & KISS Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #7c3aed;
+      --primary-dark: #5b21b6;
+      --secondary: #10b981;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #f1f5f9;
+      color: var(--dark);
+      padding: 0;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 0 0 1rem 1rem;
+      box-shadow: var(--card-shadow);
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .principles {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .principle {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      backdrop-filter: blur(5px);
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    section {
+      background: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    h2 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    ul {
+      list-style-type: none;
+    }
+    
+    li {
+      margin-bottom: 0.75rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+      font-weight: bold;
+    }
+    
+    code {
+      font-family: 'Courier New', monospace;
+      background-color: #e2e8f0;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #334155;
+    }
+    
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .cta-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      header {
+        padding: 2rem 1rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .principles {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
+    }
+    
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      
+      section {
+        background-color: #1e293b;
+        color: #f8fafc;
+      }
+      
+      code {
+        background-color: #334155;
+        color: #f8fafc;
+      }
+      
+      h2 {
+        color: #a78bfa;
+        border-bottom-color: #334155;
+      }
+      
+      li:before {
+        color: #34d399;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Mastering APIs with Python</h1>
+      <p class="subtitle">A practical guide to API development and consumption using Python, following Kaizen (Continuous Improvement) and KISS (Keep It Simple) principles</p>
+      <div class="principles">
+        <span class="principle"><i class="fas fa-chart-line"></i> Kaizen</span>
+        <span class="principle"><i class="fas fa-gem"></i> KISS</span>
+      </div>
+      <a href="#content" class="cta-button">Start Learning</a>
+    </div>
+  </header>
+
+  <main id="content" class="container">
+    <div class="grid">
+      <section>
+        <h2><i class="fas fa-book"></i> Stage 1: Fundamentals</h2>
+        <ul>
+          <li>Understand what an API is: <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code></li>
+          <li>Install Python requests: <code>pip install requests</code></li>
+          <li>Make a simple GET request to a public API like <a href="https://api.github.com" target="_blank" rel="noopener noreferrer">GitHub API</a></li>
+          <li>Learn about HTTP status codes and headers</li>
+          <li>Understand JSON data format and serialization</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><i class="fas fa-flask"></i> Stage 2: Practice & Explore</h2>
+        <ul>
+          <li>Explore RESTful APIs (Weather, YouTube, OpenAI, Facebook, etc.)</li>
+          <li>Practice with real projects: News Fetcher, YouTube Downloader, Email Bot</li>
+          <li>Understand authentication: API keys, OAuth, tokens</li>
+          <li>Learn to parse and manipulate API responses</li>
+          <li>Work with paginated API responses</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><i class="fas fa-tools"></i> Stage 3: Professional Integration</h2>
+        <ul>
+          <li>Create a Flask or FastAPI project to expose your own API</li>
+          <li>Consume third-party APIs in a production project</li>
+          <li>Handle errors, rate-limits, and security</li>
+          <li>Implement caching strategies for API responses</li>
+          <li>Monitor and log API interactions</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><i class="fas fa-seedling"></i> Kaizen Habits</h2>
+        <ul>
+          <li>Practice one new API every week</li>
+          <li>Document what you learn with examples</li>
+          <li>Teach or blog what you learn to reinforce understanding</li>
+          <li>Review and refactor your old API code</li>
+          <li>Contribute to open-source API projects</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><i class="fas fa-lightbulb"></i> KISS Projects to Try</h2>
+        <ul>
+          <li>Currency Converter using ExchangeRate API</li>
+          <li>Instagram Media Poster using Facebook Graph API</li>
+          <li>Weather Dashboard using OpenWeatherMap</li>
+          <li>Google Calendar Event Creator using Google API</li>
+          <li>AI Chatbot using OpenAI API</li>
+          <li>Stock Market Tracker using Alpha Vantage API</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><i class="fas fa-link"></i> API Resources</h2>
+        <ul>
+          <li><a href="https://public-apis.io/" target="_blank" rel="noopener noreferrer">Public APIs Collection</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank" rel="noopener noreferrer">HTTP Status Codes</a></li>
+          <li><a href="https://requests.readthedocs.io/" target="_blank" rel="noopener noreferrer">Python Requests Documentation</a></li>
+          <li><a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer">FastAPI Framework</a></li>
+          <li><a href="https://swagger.io/" target="_blank" rel="noopener noreferrer">API Documentation with Swagger</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ for Python developers | Remember: "Continuous improvement is better than delayed perfection."</p>
+    <p>© <span id="year"></span> API Mastery Guide</p>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Console message
+    console.log("%cKaizen + KISS loaded. Begin your API journey! 🔥", 
+      "color: #7c3aed; font-size: 14px; font-weight: bold;");
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

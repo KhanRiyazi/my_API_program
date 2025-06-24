@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional API Mastery Roadmap with Python</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4285F4;
+      --primary-dark: #3367D6;
+      --secondary: #34A853;
+      --danger: #EA4335;
+      --warning: #FBBC05;
+      --dark: #202124;
+      --light: #f8f9fa;
+      --gray: #5f6368;
+      --light-gray: #e8eaed;
+      --card-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+      --card-shadow-hover: 0 1px 3px 0 rgba(60,64,67,0.302), 0 4px 8px 3px rgba(60,64,67,0.149);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--light);
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 0.8rem 1.8rem;
+      border-radius: 4px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .phase {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .phase:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .phase-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+    }
+
+    .phase-title {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .phase-duration {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    .task-list {
+      list-style-type: none;
+    }
+
+    .task {
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .task:before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+    }
+
+    .credential-guide {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .guide-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .guide-section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .steps {
+      list-style-type: none;
+      counter-reset: step-counter;
+    }
+
+    .step {
+      margin-bottom: 1rem;
+      padding-left: 2.5rem;
+      position: relative;
+      counter-increment: step-counter;
+    }
+
+    .step:before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--primary);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      background: var(--light-gray);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: var(--danger);
+    }
+
+    pre {
+      background: var(--dark);
+      color: white;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+    }
+
+    .note {
+      background: #FFF8E1;
+      border-left: 4px solid var(--warning);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .note-title {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #E65100;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      header {
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .roadmap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #121212;
+        color: #e0e0e0;
+      }
+
+      .phase, .credential-guide {
+        background: #1e1e1e;
+        color: #e0e0e0;
+      }
+
+      .phase-title, .guide-title, .section-title {
+        color: #8ab4f8;
+      }
+
+      code {
+        background: #2d2d2d;
+        color: #f48771;
+      }
+
+      pre {
+        background: #1e1e1e;
+        border: 1px solid #333;
+      }
+
+      .note {
+        background: #332900;
+        border-left-color: #ffb300;
+      }
+
+      .note-title {
+        color: #ffb300;
+      }
+
+      .phase-header {
+        border-bottom-color: #333;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Professional API Mastery Roadmap</h1>
+      <p class="subtitle">A structured learning path for mastering APIs with Python, including step-by-step guides for Google and Facebook API credentials</p>
+      <a href="#credential-guide" class="cta-button">
+        <i class="fas fa-key"></i> Jump to Credential Guide
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--primary);">
+        <i class="fas fa-road"></i> API Learning Roadmap
+      </h2>
+      <p style="margin-bottom: 2rem;">Follow this 8-week structured plan to go from API beginner to professional. Each phase builds on the previous one.</p>
+
+      <div class="roadmap">
+        <div class="phase">
+          <div class="phase-header">
+            <div class="phase-icon">1</div>
+            <div>
+              <div class="phase-title">API Fundamentals</div>
+              <div class="phase-duration">Week 1-2</div>
+            </div>
+          </div>
+          <ul class="task-list">
+            <li class="task">Understand REST API concepts</li>
+            <li class="task">Learn HTTP methods (GET, POST, PUT, DELETE)</li>
+            <li class="task">Practice with Python's <code>requests</code> library</li>
+            <li class="task">Work with JSON data</li>
+            <li class="task">Handle HTTP status codes</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">
+            <div class="phase-icon">2</div>
+            <div>
+              <div class="phase-title">Public APIs</div>
+              <div class="phase-duration">Week 3-4</div>
+            </div>
+          </div>
+          <ul class="task-list">
+            <li class="task">Explore free public APIs (GitHub, OpenWeather)</li>
+            <li class="task">Build simple projects with public data</li>
+            <li class="task">Learn API rate limiting</li>
+            <li class="task">Implement error handling</li>
+            <li class="task">Create API wrappers</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">
+            <div class="phase-icon">3</div>
+            <div>
+              <div class="phase-title">Authentication</div>
+              <div class="phase-duration">Week 5</div>
+            </div>
+          </div>
+          <ul class="task-list">
+            <li class="task">API keys (Google, Twitter)</li>
+            <li class="task">OAuth 2.0 (Facebook, GitHub)</li>
+            <li class="task">Token-based authentication</li>
+            <li class="task">JWT (JSON Web Tokens)</li>
+            <li class="task">Secure credential storage</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">
+            <div class="phase-icon">4</div>
+            <div>
+              <div class="phase-title">Professional Projects</div>
+              <div class="phase-duration">Week 6-7</div>
+            </div>
+          </div>
+          <ul class="task-list">
+            <li class="task">Build a Flask/FastAPI service</li>
+            <li class="task">Create your own REST API</li>
+            <li class="task">Document with Swagger/OpenAPI</li>
+            <li class="task">Implement pagination</li>
+            <li class="task">Add caching with Redis</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">
+            <div class="phase-icon">5</div>
+            <div>
+              <div class="phase-title">Advanced Concepts</div>
+              <div class="phase-duration">Week 8</div>
+            </div>
+          </div>
+          <ul class="task-list">
+            <li class="task">Webhooks and real-time data</li>
+            <li class="task">GraphQL vs REST</li>
+            <li class="task">API testing with Postman</li>
+            <li class="task">Performance optimization</li>
+            <li class="task">Monitoring and analytics</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="credential-guide" class="credential-guide">
+      <h2 class="guide-title">
+        <i class="fas fa-key"></i> API Credential Guide
+      </h2>
+      <p style="margin-bottom: 2rem;">Step-by-step instructions to obtain credentials for Google and Facebook APIs</p>
+
+      <div class="guide-section">
+        <h3 class="section-title">
+          <i class="fab fa-google"></i> Getting Google API client_secret.json
+        </h3>
+        <ol class="steps">
+          <li class="step">Go to the <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a></li>
+          <li class="step">Create a new project or select an existing one</li>
+          <li class="step">Navigate to "APIs & Services" → "Credentials"</li>
+          <li class="step">Click "Create Credentials" → "OAuth client ID"</li>
+          <li class="step">Configure the consent screen (external or internal)</li>
+          <li class="step">Select application type (Desktop App for local development)</li>
+          <li class="step">Enter a name for your OAuth client</li>
+          <li class="step">Click "Create" - this will generate your credentials</li>
+          <li class="step">Click the download button (📥 icon) to get <code>client_secret.json</code></li>
+        </ol>
+
+        <div class="note">
+          <div class="note-title">
+            <i class="fas fa-exclamation-circle"></i> Important Notes
+          </div>
+          <p>1. You must enable the specific API you want to use (like Gmail, Calendar, etc.) in "APIs & Services" → "Library"</p>
+          <p>2. For production use, you'll need to verify your app with Google</p>
+        </div>
+
+        <h4 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Python Code to Load Credentials:</h4>
+        <pre><code>from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+
+# Load credentials from file
+flow = InstalledAppFlow.from_client_secrets_file(
+    'client_secret.json',
+    scopes=['https://www.googleapis.com/auth/calendar']
+)
+
+# Run local server to authenticate
+credentials = flow.run_local_server(port=0)</code></pre>
+      </div>
+
+      <div class="guide-section">
+        <h3 class="section-title">
+          <i class="fab fa-facebook"></i> Getting Facebook Access Token
+        </h3>
+        <ol class="steps">
+          <li class="step">Go to <a href="https://developers.facebook.com/" target="_blank">Facebook for Developers</a></li>
+          <li class="step">Create a new app (select "Business" for most API access)</li>
+          <li class="step">Go to "Settings" → "Basic" to get your App ID and App Secret</li>
+          <li class="step">Navigate to "Products" and add the API you need (e.g., "Facebook Login")</li>
+          <li class="step">For testing, go to "Roles" → "Test Users" to create a test user</li>
+          <li class="step">Click "Generate Access Token" for your test user</li>
+          <li class="step">For production, implement OAuth flow with proper permissions</li>
+        </ol>
+
+        <div class="note">
+          <div class="note-title">
+            <i class="fas fa-exclamation-circle"></i> Important Notes
+          </div>
+          <p>1. Facebook frequently changes their API policies - check the <a href="https://developers.facebook.com/docs/graph-api/changelog" target="_blank">changelog</a></p>
+          <p>2. Some permissions require app review before they can be used</p>
+        </div>
+
+        <h4 style="margin: 1.5rem 0 1rem; color: var(--secondary);">Python Code to Use Facebook Token:</h4>
+        <pre><code>import requests
+
+# Your access token (never hardcode in production!)
+ACCESS_TOKEN = 'your_access_token_here'
+
+# Make API request
+response = requests.get(
+    f'https://graph.facebook.com/v15.0/me?fields=id,name&access_token={ACCESS_TOKEN}'
+)
+
+if response.status_code == 200:
+    print(response.json())
+else:
+    print(f"Error: {response.status_code}", response.text)</code></pre>
+      </div>
+
+      <div class="note" style="background: #E3F2FD; border-left-color: var(--primary);">
+        <div class="note-title" style="color: var(--primary);">
+          <i class="fas fa-shield-alt"></i> Security Best Practices
+        </div>
+        <p>1. <strong>Never commit</strong> <code>client_secret.json</code> or access tokens to version control</p>
+        <p>2. Use environment variables for sensitive data:</p>
+        <pre style="margin: 0.5rem 0;"><code># In your .env file:
+GOOGLE_CLIENT_SECRET=your_secret_here
+FACEBOOK_ACCESS_TOKEN=your_token_here
+
+# In Python:
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+client_secret = os.getenv('GOOGLE_CLIENT_SECRET')</code></pre>
+        <p>3. Implement token refresh mechanisms for long-running applications</p>
+      </div>
+    </section>
+
+    <section style="background: #E8F5E9; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+      <h2 style="color: var(--secondary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;">
+        <i class="fas fa-book"></i> Recommended Resources
+      </h2>
+      <ul style="list-style-type: none;">
+        <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+          <span style="position: absolute; left: 0; color: var(--secondary);">▸</span>
+          <a href="https://developers.google.com/api-client-library/python" target="_blank">Google API Python Client Docs</a>
+        </li>
+        <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+          <span style="position: absolute; left: 0; color: var(--secondary);">▸</span>
+          <a href="https://developers.facebook.com/docs/graph-api" target="_blank">Facebook Graph API Docs</a>
+        </li>
+        <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+          <span style="position: absolute; left: 0; color: var(--secondary);">▸</span>
+          <a href="https://requests.readthedocs.io/" target="_blank">Python Requests Library</a>
+        </li>
+        <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+          <span style="position: absolute; left: 0; color: var(--secondary);">▸</span>
+          <a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI Documentation</a>
+        </li>
+        <li style="margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;">
+          <span style="position: absolute; left: 0; color: var(--secondary);">▸</span>
+          <a href="https://public-apis.io/" target="_blank">Public APIs Directory</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> API Mastery Guide | Created with Python and ❤️</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Remember: "The expert in anything was once a beginner."</p>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Console welcome message
+    console.log(`%c🔑 Welcome to API Mastery! %c\n\nHere's your professional roadmap for API development with Python.\n\nRemember to:\n1. Keep credentials secure\n2. Follow platform guidelines\n3. Implement proper error handling`, 
+      'color: #4285F4; font-size: 18px; font-weight: bold;', 
+      'color: #34A853; font-size: 14px;');
+  </script>
+</body>
+</html>
